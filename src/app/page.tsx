@@ -3,6 +3,7 @@ import { ArrowRight, ShieldCheck, FileSearch, BrainCircuit, Activity } from "luc
 import { Button } from "@/components/ui/button";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
+import { HeroContent } from "@/components/home/hero-content";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
@@ -42,47 +43,7 @@ export default async function Home() {
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <main className="flex-1 flex flex-col items-center justify-center pt-24 pb-32 px-6 text-center">
-        <div className="inline-flex items-center rounded-full border border-blue-200 bg-blue-50 px-4 py-1.5 text-sm font-medium text-blue-800 mb-8 shadow-sm">
-          <BrainCircuit className="w-4 h-4 mr-2" />
-          Powered by Gemini AI Summaries
-        </div>
-        
-        <h1 className="max-w-4xl text-5xl md:text-7xl font-extrabold tracking-tight text-slate-900 mb-8 leading-[1.1]">
-          Your health journey, <br className="hidden md:block"/>
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
-            beautifully organized.
-          </span>
-        </h1>
-        
-        <p className="max-w-2xl text-xl text-slate-600 mb-10 leading-relaxed font-light">
-          Securely upload, organize, and understand your medical records. MediVault transforms your scattered documents into a crystal-clear timeline of your health.
-        </p>
-        
-        <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-          {session ? (
-            <Link href="/dashboard" className="w-full sm:w-auto">
-              <Button size="lg" className="h-14 px-8 w-full bg-blue-600 hover:bg-blue-700 shadow-xl shadow-blue-600/20 rounded-full text-lg">
-                Enter Your Vault <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
-          ) : (
-            <>
-              <Link href="/register" className="w-full sm:w-auto">
-                <Button size="lg" className="h-14 px-8 w-full bg-blue-600 hover:bg-blue-700 shadow-xl shadow-blue-600/20 rounded-full text-lg">
-                  Start Your Vault <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
-              <Link href="/login" className="w-full sm:w-auto">
-                <Button size="lg" variant="outline" className="h-14 px-8 w-full border-slate-200 text-slate-700 hover:bg-slate-100 rounded-full text-lg">
-                  Sign In
-                </Button>
-              </Link>
-            </>
-          )}
-        </div>
-      </main>
+      <HeroContent isAuthed={!!session} />
 
       {/* Features Section */}
       <section className="bg-white py-24 pb-32 px-6 border-t border-slate-100">
