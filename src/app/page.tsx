@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { HeroContent } from "@/components/home/hero-content";
+import { FeaturesSection } from "@/components/home/features-section";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
@@ -45,44 +46,7 @@ export default async function Home() {
 
       <HeroContent isAuthed={!!session} />
 
-      {/* Features Section */}
-      <section className="bg-white py-24 pb-32 px-6 border-t border-slate-100">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-12">
-            
-            <div className="space-y-4">
-              <div className="w-14 h-14 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center text-blue-600 shadow-sm">
-                <ShieldCheck className="h-7 w-7" />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 tracking-tight">Secure Storage</h3>
-              <p className="text-slate-600 leading-relaxed">
-                Your medical records belong to you. We keep them securely stored and completely private, accessible only through your authenticated vault.
-              </p>
-            </div>
-            
-            <div className="space-y-4">
-               <div className="w-14 h-14 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 shadow-sm shadow-blue-100/50">
-                <FileSearch className="h-7 w-7" />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 tracking-tight">Instant Search</h3>
-              <p className="text-slate-600 leading-relaxed">
-                Never lose a prescription again. Easily find any test report, scan, or notes by searching titles, categories, or doctor names instantly.
-              </p>
-            </div>
-            
-            <div className="space-y-4">
-               <div className="w-14 h-14 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 shadow-sm shadow-indigo-100/50">
-                <BrainCircuit className="h-7 w-7" />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 tracking-tight">AI Summaries</h3>
-              <p className="text-slate-600 leading-relaxed">
-                Medical jargon made simple. Our integrated AI reads your uploaded reports and generates brief, simple summaries you can actually understand.
-              </p>
-            </div>
-
-          </div>
-        </div>
-      </section>
+      <FeaturesSection />
 
       {/* Footer */}
       <footer className="py-8 text-center text-slate-500 text-sm border-t border-slate-100 bg-white">
