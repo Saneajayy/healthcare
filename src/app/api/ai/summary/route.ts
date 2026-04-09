@@ -2,8 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { GoogleGenAI } from "@google/genai";
-import { readFile } from "fs/promises";
-import path from "path";
 
 export async function POST(req: NextRequest) {
   try {
@@ -26,10 +24,13 @@ export async function POST(req: NextRequest) {
       }, { status: 200 });
     }
 
-    const filename = fileUrl.split("/").pop();
-    const filePath = path.join(process.cwd(), "public", "uploads", filename);
-    const buffer = await readFile(filePath);
+    // Fetch the file from the cloud URL (Vercel Blob)
+    const fileRes = await fetch(fileUrl);
+    if (!fileRes.ok) throw new Error("Failed to fetch file from storage");
+    const arrayBuffer = await fileRes.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
     
+    const filename = fileUrl.split("/").pop() || "";
     const ext = filename.split(".").pop()?.toLowerCase();
     let mimeType = "image/jpeg";
     if (ext === "pdf") mimeType = "application/pdf";
@@ -59,3 +60,4 @@ export async function POST(req: NextRequest) {
     );
   }
 }
+

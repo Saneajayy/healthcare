@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import { writeFile, mkdir } from "fs/promises";
-import path from "path";
+import { put } from "@vercel/blob";
 
 export async function POST(req: NextRequest) {
   try {
@@ -18,23 +17,14 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "No file provided" }, { status: 400 });
     }
 
-    const buffer = Buffer.from(await file.arrayBuffer());
     const filename = `${Date.now()}-${file.name.replace(/\\s/g, "_")}`;
     
-    // Ensure public/uploads exists
-    const uploadDir = path.join(process.cwd(), "public", "uploads");
-    try {
-      await mkdir(uploadDir, { recursive: true });
-    } catch (e) {
-      // Directory exists or other error
-    }
+    // Upload standard file to Vercel Blob
+    const blob = await put(filename, file, {
+      access: 'public',
+    });
 
-    const filePath = path.join(uploadDir, filename);
-    await writeFile(filePath, buffer);
-
-    const fileUrl = `/uploads/${filename}`;
-
-    return NextResponse.json({ fileUrl, filename: file.name }, { status: 200 });
+    return NextResponse.json({ fileUrl: blob.url, filename: file.name }, { status: 200 });
   } catch (error) {
     console.error("Upload error:", error);
     return NextResponse.json(
@@ -43,3 +33,4 @@ export async function POST(req: NextRequest) {
     );
   }
 }
+
