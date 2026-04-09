@@ -1,10 +1,12 @@
-"use client";
-
 import Link from "next/link";
 import { ArrowRight, ShieldCheck, FileSearch, BrainCircuit, Activity } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 
-export default function Home() {
+export default async function Home() {
+  const session = await getServerSession(authOptions);
+  
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans selection:bg-blue-200">
       
@@ -18,14 +20,24 @@ export default function Home() {
             <span className="text-2xl font-bold tracking-tight text-slate-900">MediVault</span>
           </div>
           <div className="flex items-center gap-4">
-            <Link href="/login">
-              <Button variant="ghost" className="font-medium text-slate-600 hover:text-slate-900">Sign In</Button>
-            </Link>
-            <Link href="/register">
-              <Button className="bg-blue-600 hover:bg-blue-700 shadow-md shadow-blue-500/20 rounded-full px-6">
-                Get Started
-              </Button>
-            </Link>
+            {session ? (
+              <Link href="/dashboard">
+                <Button className="bg-blue-600 hover:bg-blue-700 shadow-md shadow-blue-500/20 rounded-full px-6">
+                  Go to Dashboard
+                </Button>
+              </Link>
+            ) : (
+              <>
+                <Link href="/login">
+                  <Button variant="ghost" className="font-medium text-slate-600 hover:text-slate-900">Sign In</Button>
+                </Link>
+                <Link href="/register">
+                  <Button className="bg-blue-600 hover:bg-blue-700 shadow-md shadow-blue-500/20 rounded-full px-6">
+                    Get Started
+                  </Button>
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </nav>
@@ -49,16 +61,26 @@ export default function Home() {
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-          <Link href="/register" className="w-full sm:w-auto">
-            <Button size="lg" className="h-14 px-8 w-full bg-blue-600 hover:bg-blue-700 shadow-xl shadow-blue-600/20 rounded-full text-lg">
-              Start Your Vault <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-          </Link>
-          <Link href="/login" className="w-full sm:w-auto">
-            <Button size="lg" variant="outline" className="h-14 px-8 w-full border-slate-200 text-slate-700 hover:bg-slate-100 rounded-full text-lg">
-              View Demo
-            </Button>
-          </Link>
+          {session ? (
+            <Link href="/dashboard" className="w-full sm:w-auto">
+              <Button size="lg" className="h-14 px-8 w-full bg-blue-600 hover:bg-blue-700 shadow-xl shadow-blue-600/20 rounded-full text-lg">
+                Enter Your Vault <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+          ) : (
+            <>
+              <Link href="/register" className="w-full sm:w-auto">
+                <Button size="lg" className="h-14 px-8 w-full bg-blue-600 hover:bg-blue-700 shadow-xl shadow-blue-600/20 rounded-full text-lg">
+                  Start Your Vault <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
+              <Link href="/login" className="w-full sm:w-auto">
+                <Button size="lg" variant="outline" className="h-14 px-8 w-full border-slate-200 text-slate-700 hover:bg-slate-100 rounded-full text-lg">
+                  Sign In
+                </Button>
+              </Link>
+            </>
+          )}
         </div>
       </main>
 
