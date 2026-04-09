@@ -13,12 +13,12 @@ export default async function Home() {
       {/* Navigation */}
       <nav className="border-b border-slate-200 bg-white/80 backdrop-blur-md sticky top-0 z-50">
         <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2 hover:opacity-90 transition-opacity">
             <div className="bg-blue-600 p-2 rounded-xl shadow-lg shadow-blue-500/20 text-white">
               <Activity className="h-6 w-6" />
             </div>
             <span className="text-2xl font-bold tracking-tight text-slate-900">MediVault</span>
-          </div>
+          </Link>
           <div className="flex items-center gap-4">
             {session ? (
               <Link href="/dashboard">

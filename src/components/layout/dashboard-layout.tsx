@@ -25,10 +25,10 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
     <div className="min-h-screen bg-slate-50 flex">
       {/* Sidebar */}
       <div className="w-64 bg-white border-r border-slate-200 fixed h-full flex flex-col">
-        <div className="h-16 flex items-center px-6 border-b border-slate-100">
+        <Link href="/" className="h-16 flex items-center justify-start px-6 border-b border-slate-100 hover:bg-slate-50 transition-colors">
           <Activity className="h-6 w-6 text-blue-600 mr-2" />
           <span className="text-xl font-bold text-slate-900 tracking-tight">MediVault</span>
-        </div>
+        </Link>
         
         <div className="px-4 py-6 flex-1">
           <nav className="space-y-1">
