@@ -1,5 +1,11 @@
 # MediVault - Smart Medical Record Organizer
 
+![Dashboard view 1](public/screenshot-1.png)
+![Dashboard view 2](public/screenshot-2.png)
+![Dashboard view 3](public/screenshot-3.png)
+![Dashboard view 4](public/screenshot-4.png)
+![Dashboard view 5](public/screenshot-5.png)
+
 ## About
 MediVault is a full-stack, AI-powered medical record organizer designed to help you securely manage your health data. It allows users to seamlessly upload, organize, and view their medical records in one centralized location. By leveraging advanced AI, MediVault extracts key insights and simplifies complex medical jargon, making your health information easy to understand.
 
