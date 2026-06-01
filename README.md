@@ -1,35 +1,28 @@
+# MediVault - Smart Medical Record Organizer
 
-## Getting Started
+## About
+MediVault is a full-stack, AI-powered medical record organizer designed to help you securely manage your health data. It allows users to seamlessly upload, organize, and view their medical records in one centralized location. By leveraging advanced AI, MediVault extracts key insights and simplifies complex medical jargon, making your health information easy to understand.
 
-First, run the development server:
+## Features
+- **Smart Organization:** Securely upload, categorize, and store medical records, lab results, and prescriptions.
+- **AI-Powered Insights:** Utilize advanced AI (Google GenAI) to summarize and explain complex medical documents in plain language.
+- **Secure Authentication:** Robust user authentication and data protection powered by NextAuth.js.
+- **Modern Dashboard:** A sleek, responsive, and highly intuitive user interface built with Next.js, Tailwind CSS, and shadcn/ui.
+- **Cloud Storage:** Reliable, scalable, and secure document storage using Vercel Blob.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## How it helps
+- **Centralized Health Data:** Eliminates the hassle of fragmented paper records by keeping all your medical history in one secure digital vault.
+- **Better Understanding:** Demystifies complex medical terminology and lab results, empowering you to take control of your health.
+- **Preparedness:** Ensures your critical health information is always organized and readily accessible for your next doctor's appointment.
+- **Peace of Mind:** Provides a secure environment for your most sensitive data with modern authentication and cloud storage practices.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Tech Stack
+- **Frontend Framework:** [Next.js](https://nextjs.org/) (App Router) & [React 19](https://react.dev/)
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **Styling & UI:** [Tailwind CSS v4](https://tailwindcss.com/), [shadcn/ui](https://ui.shadcn.com/), [Framer Motion](https://www.framer.com/motion/)
+- **Backend & API:** Next.js API Routes
+- **Authentication:** [NextAuth.js](https://next-auth.js.org/) & bcryptjs
+- **Database ORM:** [Prisma](https://www.prisma.io/)
+- **AI Integration:** [Google GenAI SDK](https://ai.google.dev/)
+- **Cloud Storage:** [Vercel Blob](https://vercel.com/docs/storage/vercel-blob)
+- **Forms & Validation:** [React Hook Form](https://react-hook-form.com/) & [Zod](https://zod.dev/)
